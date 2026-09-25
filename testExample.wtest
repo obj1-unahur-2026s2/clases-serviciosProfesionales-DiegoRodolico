@@ -1,9 +1,11 @@
-import example.pepita
+import example.*
+describe "pruebas de instanciacion  " {
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "Profesionales vinculados a una universidad:" {
+    const prof1 = new Profesional(unahur)
+    const prof2 = new Profesional()
+    const unahur = new Universidad()
+    const litoral = new Universidad([entreRios,santaFe,corrientes],3000)
   }
 
 }

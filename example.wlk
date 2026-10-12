@@ -74,6 +74,8 @@ class Universidad{
 
 class EmpresaDeServicios{
     const profesionales = []
+    const clientes = #{}
+    method agregarCliente(uncliente){clientes.add(uncliente)}
     method nombrarProfesionales() = profesionales.map({p=>p.nombre()})
     method agregarProfesional(unProfesional){
         profesionales.add(unProfesional)
@@ -99,6 +101,38 @@ class EmpresaDeServicios{
     method esDeGenteAcotada(){
         return !profesionales.all({p=>p.provincias().size() >= 3})
     }
+    method satisfacer(solicitante){
+        return profesionales.any({p=>solicitante.puedeSerAtendida(p)})
+    }
+    method darServicio(solicitante){
+        if (self.satisfacer(solicitante))
+            self.agarrarCualquierProfesional().cobrarDinero(self.agarrarCualquierProfesional().sueldo())
+            self.agregarCliente(solicitante)
+
+    }
+    method agarrarCualquierProfesional(){
+        return profesionales.anyOne()
+
+    }
+}
+class Persona{
+    const provinciaPersona
+    method puedeSerAtendida(profesional){
+        return profesional.provincias().contains(provinciaPersona)
+    }
+}
+class Institucion{
+    const universidadesReconocidas = []
+    method puedeSerAtendida(profesional){
+        return universidadesReconocidas.contains(profesional.universidad())
+    }
+}
+class Club{
+    var provinciasClub = []
+    method puedeSerAtendida(profesional){
+        return profesional.provincias() == provinciasClub
+    }
+
 }
 
 
